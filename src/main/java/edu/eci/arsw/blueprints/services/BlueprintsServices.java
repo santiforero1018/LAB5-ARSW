@@ -31,18 +31,23 @@ public class BlueprintsServices {
     @Autowired
     Filter filter;
 
-
     /**
      * 
-     * @param blueprint 
+     * @param blueprint
      * @throws BlueprintPersistenceException
-     * @throws BlueprintPersistenceException 
+     * @throws BlueprintPersistenceException
      */
     public void addNewBlueprint(Blueprint bp) throws BlueprintPersistenceException {
-        bpp.saveBlueprint(bp);
+        try {
+            bpp.saveBlueprint(bp);
+        } catch (BlueprintPersistenceException e) {
+            // TODO: handle exception
+            throw new BlueprintPersistenceException(e.getMessage());
+        }
+
     }
 
-    public Set<Blueprint> getAllBlueprints() throws BlueprintNotFoundException{
+    public Set<Blueprint> getAllBlueprints() throws BlueprintNotFoundException {
         try {
             return this.bpp.getAllBlueprints();
         } catch (BlueprintNotFoundException e) {
@@ -74,14 +79,14 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if the given author doesn't exist
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException {
-        try{
+        try {
             return this.bpp.getBlueprintsByAuthor(author);
-        }catch(BlueprintNotFoundException e){
+        } catch (BlueprintNotFoundException e) {
             throw new BlueprintNotFoundException(e.getMessage());
         }
     }
 
-    public List<Point> getFilterPointsOneBp(String author, String bprintname) throws BlueprintNotFoundException{
+    public List<Point> getFilterPointsOneBp(String author, String bprintname) throws BlueprintNotFoundException {
         try {
             return this.filter.getPoints(this.bpp.getBlueprint(author, bprintname));
         } catch (BlueprintNotFoundException e) {
@@ -91,5 +96,12 @@ public class BlueprintsServices {
 
     }
 
+    public void updateBluePrint(Blueprint obp,String author, String name) throws BlueprintPersistenceException {
+        try {
+            this.bpp.updateBluePrint(obp, author, name);
+        } catch (BlueprintPersistenceException e) {
+            throw new BlueprintPersistenceException(e.getMessage());
+        }
+    }
 
 }

@@ -16,20 +16,19 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author hcadavid
  */
- @Service
+@Service
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
 
     private final Map<Tuple<String, String>, Blueprint> blueprints = new HashMap<>();
 
     public InMemoryBlueprintPersistence() {
-       
+
         Blueprint bp1 = new Blueprint("john", "thepaint", new Point[] { new Point(0, 0), new Point(10, 10) });
 
         Blueprint bp2 = new Blueprint("Martha", "thepaint1", new Point[] { new Point(10, 15), new Point(20, 20) });
@@ -52,8 +51,8 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
         for (Map.Entry<Tuple<String, String>, Blueprint> space : blueprints.entrySet()) {
             resp.add(space.getValue());
         }
-        if(resp.isEmpty()){
-            throw new BlueprintNotFoundException("No hay planos");
+        if (resp.isEmpty()) {
+            throw new BlueprintNotFoundException("Error 404 NOT FOUND: trying to find blueprints");
         }
         return resp;
     }
@@ -62,6 +61,8 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
     public void saveBlueprint(Blueprint bp) throws BlueprintPersistenceException {
         if (blueprints.containsKey(new Tuple<>(bp.getAuthor(), bp.getName()))) {
             throw new BlueprintPersistenceException("The given blueprint already exists: " + bp);
+        } else if(bp.getAuthor().isEmpty() || bp.getName().isEmpty()){
+            throw new BlueprintPersistenceException("The given blueprint hasn't author or name");
         } else {
             blueprints.put(new Tuple<>(bp.getAuthor(), bp.getName()), bp);
         }
@@ -69,11 +70,11 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
 
     @Override
     public Blueprint getBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
-        
+
         Blueprint resp = blueprints.get(new Tuple<>(author, bprintname));
 
-        if(resp == null){
-            throw new BlueprintNotFoundException("No hay planos");
+        if (resp == null) {
+            throw new BlueprintNotFoundException("Error 404 NOT FOUND: trying to find blueprints");
         }
 
         return resp;
@@ -88,10 +89,23 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
                 resp.add(space.getValue());
             }
         }
-        if(resp.isEmpty()){
-            throw new BlueprintNotFoundException("No hay planos");
+        if (resp.isEmpty()) {
+            throw new BlueprintNotFoundException("Error 404 NOT FOUND: trying to find blueprints");
         }
         return resp;
+
+    }
+
+    @Override
+    public void updateBluePrint(Blueprint obp,String author, String name) throws BlueprintPersistenceException {
+        try {
+            Point[] aux = (Point[]) blueprints.get(new Tuple<>(obp.getAuthor(), obp.getName())).getPoints().toArray();
+            blueprints.remove(new Tuple<>(obp.getAuthor(), obp.getName()));
+            this.saveBlueprint(new Blueprint(author, name, aux));
+            
+        } catch (BlueprintPersistenceException e) {
+            throw new BlueprintPersistenceException(e.getMessage());
+        }
 
     }
 }
