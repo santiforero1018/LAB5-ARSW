@@ -105,8 +105,14 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 
 3. Teniendo en cuenta el autor y numbre del plano registrado, verifique que el mismo se pueda obtener mediante una petición GET al recurso '/blueprints/{author}/{bpname}' correspondiente.
 
+	- Como se uso el SO de Windows, se ejecutó el siguiente comando:
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/5ad02194-589d-437d-8527-66e2380d9eb3)
+	- y se verifica que si se añadió correctamente el nuevo plano
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/f76925ec-6868-49e6-832f-b059faad4362)
+
 4. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
 
+	
 
 ### Parte III
 
