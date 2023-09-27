@@ -73,7 +73,7 @@ public class BlueprintAPIController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/planos/{author}/{name}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/{author}/{name}")
     public ResponseEntity<?> updateBluePrint(@PathVariable String author, @PathVariable String name, @RequestBody Blueprint nbp){
         try {
             this.bps.updateBluePrint(author, name, nbp);
