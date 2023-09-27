@@ -135,7 +135,8 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 4. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
    	- Implementación del metodo para actualizar
    	  1. En InMemoryPersistance
-   	 	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/d70bec7c-1a1a-4e36-8432-8aefb0bfeb57)
+   	 	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/1bff4611-f3d8-45f4-9aef-004a3dfccde6)
+
 
    	  2. En BluePrintService
    	   	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/33fac651-3341-4200-bf13-a5c2c2e1843d)
