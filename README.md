@@ -83,7 +83,11 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
         }        
  	
 	}
-	```	
+	```
+ 	- Implementación de la función usando la petición POST
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/ae3721a8-a900-4c88-8452-b466a618f8b7)
+
+
 
 
 2.  Para probar que el recurso ‘planos’ acepta e interpreta
@@ -106,18 +110,34 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 3. Teniendo en cuenta el autor y numbre del plano registrado, verifique que el mismo se pueda obtener mediante una petición GET al recurso '/blueprints/{author}/{bpname}' correspondiente.
 
 	- Como se uso el SO de Windows, se ejecutó el siguiente comando:
-		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/5ad02194-589d-437d-8527-66e2380d9eb3)
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/04b2afcd-6426-4ead-9fc5-d71adc942b68)
+
 	- y se verifica que si se añadió correctamente el nuevo plano
 		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/f76925ec-6868-49e6-832f-b059faad4362)
 
 4. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
+   	- Implementación del metodo para actualizar
+   	  1. En InMemoryPersistance
+   	 	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/d70bec7c-1a1a-4e36-8432-8aefb0bfeb57)
+
+   	  2. En BluePrintService
+   	   	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/33fac651-3341-4200-bf13-a5c2c2e1843d)
+  
+   	  3. En el API controller
+   	     	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/97ac8d5d-f7f8-46d5-b7eb-01ee7354390d)
+
 	- siguiendo lo mismo que se hizo para el metodo POST, se hace la misma ejecución para el PUT
-	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/df9e918c-2a77-4a59-a2da-4dbd6ad31b8f)
+	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/228e62bd-24fe-4586-9836-5e720dbd18c3)
+
 	- Vemos que se actualiza el bluePrint que queriamos actualizar, el cual correspondia al autor john con el nombre "thepaint2"
 	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/5e6d49e8-0c8c-47da-8f98-423813cf63ac)
 	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/7a4e9356-c56f-4730-b4e1-8a7235a71b95)
 
-	
+ 	- Si modificamos el json usado como prueba para actualizar, y dejamos uno de los atributos nulos, el error se vera de manera personalizada a nuestra manera
+
+	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/3a2e2ab1-c731-4909-9719-a41aaef86d08)
+	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/d920685e-7273-4dd2-85ee-3715de5fa993)
+
 
 ### Parte III
 
