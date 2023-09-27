@@ -5,7 +5,7 @@
  */
 package edu.eci.arsw.blueprints.controllers;
 
-import java.util.LinkedHashSet;
+// import java.util.LinkedHashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ import edu.eci.arsw.blueprints.services.BlueprintsServices;
 
 /**
  *
- * @author hcadavid
+ * @author Santiago Forero Yate, Sebastian Cepeda Saray 
  */
 @RestController
 @RequestMapping(value="/blueprints")
@@ -37,7 +37,6 @@ public class BlueprintAPIController {
         try {
             return new ResponseEntity<Set<Blueprint>>(this.bps.getAllBlueprints(), HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            // TODO: handle exception
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
@@ -68,21 +67,19 @@ public class BlueprintAPIController {
     public ResponseEntity<?> addNewBlueprint(@RequestBody Blueprint bp){
         try {
             this.bps.addNewBlueprint(bp);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (BlueprintPersistenceException e) {
-            // TODO: handle exception
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/planos/{author}/{name}")
-    public ResponseEntity<?> updateBluePrint(Blueprint obp, @PathVariable String author, @PathVariable String name){
+    public ResponseEntity<?> updateBluePrint(@PathVariable String author, @PathVariable String name, @RequestBody Blueprint nbp){
         try {
-            this.bps.updateBluePrint(obp, author, name);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            this.bps.updateBluePrint(author, name, nbp);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (BlueprintPersistenceException e) {
-            // TODO: handle exception
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 }

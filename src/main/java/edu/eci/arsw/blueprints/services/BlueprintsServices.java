@@ -96,9 +96,9 @@ public class BlueprintsServices {
 
     }
 
-    public void updateBluePrint(Blueprint obp,String author, String name) throws BlueprintPersistenceException {
+    public void updateBluePrint(String author, String name, Blueprint nbp) throws BlueprintPersistenceException {
         try {
-            this.bpp.updateBluePrint(obp, author, name);
+            this.bpp.updateBluePrint(author, name, nbp);
         } catch (BlueprintPersistenceException e) {
             throw new BlueprintPersistenceException(e.getMessage());
         }

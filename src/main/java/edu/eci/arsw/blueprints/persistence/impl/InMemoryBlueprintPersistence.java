@@ -13,6 +13,7 @@ import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -97,11 +98,12 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
     }
 
     @Override
-    public void updateBluePrint(Blueprint obp,String author, String name) throws BlueprintPersistenceException {
+    public void updateBluePrint(String author, String name, Blueprint nbp) throws BlueprintPersistenceException {
         try {
-            Point[] aux = (Point[]) blueprints.get(new Tuple<>(obp.getAuthor(), obp.getName())).getPoints().toArray();
-            blueprints.remove(new Tuple<>(obp.getAuthor(), obp.getName()));
-            this.saveBlueprint(new Blueprint(author, name, aux));
+            List<Point> aux2 = blueprints.get(new Tuple<>(author, name)).getPoints();
+            Point[] aux = aux2.toArray(new Point[aux2.size()]);
+            blueprints.remove(new Tuple<>(author, name));
+            this.saveBlueprint(new Blueprint(nbp.getAuthor(), nbp.getName(), aux));
             
         } catch (BlueprintPersistenceException e) {
             throw new BlueprintPersistenceException(e.getMessage());
