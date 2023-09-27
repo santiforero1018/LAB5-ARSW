@@ -26,6 +26,8 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 1. Integre al proyecto base suministrado los Beans desarrollados en el ejercicio anterior. Sólo copie las clases, NO los archivos de configuración. Rectifique que se tenga correctamente configurado el esquema de inyección de dependencias con las anotaciones @Service y @Autowired.
 
 2. Modifique el bean de persistecia 'InMemoryBlueprintPersistence' para que por defecto se inicialice con al menos otros tres planos, y con dos asociados a un mismo autor.
+	- Implementación:
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/9ae12d64-b328-4ce3-9533-42069d10ed89)
 
 3. Configure su aplicación para que ofrezca el recurso "/blueprints", de manera que cuando se le haga una petición GET, retorne -en formato jSON- el conjunto de todos los planos. Para esto:
 
@@ -51,6 +53,10 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 	```
 	* Haga que en esta misma clase se inyecte el bean de tipo BlueprintServices (al cual, a su vez, se le inyectarán sus dependencias de persisntecia y de filtrado de puntos).
 
+	- Implementación del Api Controller
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/3e822236-aed0-4df7-8bee-398ec6e1c64c)
+		* Aqui se evidencia la inyección del BlueprintService
+
 4. Verifique el funcionamiento de a aplicación lanzando la aplicación con maven:
 
 	```bash
@@ -59,12 +65,23 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 	
 	```
 	Y luego enviando una petición GET a: http://localhost:8080/blueprints. Rectifique que, como respuesta, se obtenga un objeto jSON con una lista que contenga el detalle de los planos suministados por defecto, y que se haya aplicado el filtrado de puntos correspondiente.
+	- Consulta de blueprints por medio de la petición GET
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/5e6d49e8-0c8c-47da-8f98-423813cf63ac)
 
 
-5. Modifique el controlador para que ahora, acepte peticiones GET al recurso /blueprints/{author}, el cual retorne usando una representación jSON todos los planos realizados por el autor cuyo nombre sea {author}. Si no existe dicho autor, se debe responder con el código de error HTTP 404. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html), sección 22.3.2, el uso de @PathVariable. De nuevo, verifique que al hacer una petición GET -por ejemplo- a recurso http://localhost:8080/blueprints/juan, se obtenga en formato jSON el conjunto de planos asociados al autor 'juan' (ajuste esto a los nombres de autor usados en el punto 2).
+6. Modifique el controlador para que ahora, acepte peticiones GET al recurso /blueprints/{author}, el cual retorne usando una representación jSON todos los planos realizados por el autor cuyo nombre sea {author}. Si no existe dicho autor, se debe responder con el código de error HTTP 404. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html), sección 22.3.2, el uso de @PathVariable. De nuevo, verifique que al hacer una petición GET -por ejemplo- a recurso http://localhost:8080/blueprints/juan, se obtenga en formato jSON el conjunto de planos asociados al autor 'juan' (ajuste esto a los nombres de autor usados en el punto 2).
 
-6. Modifique el controlador para que ahora, acepte peticiones GET al recurso /blueprints/{author}/{bpname}, el cual retorne usando una representación jSON sólo UN plano, en este caso el realizado por {author} y cuyo nombre sea {bpname}. De nuevo, si no existe dicho autor, se debe responder con el código de error HTTP 404. 
+	- Implementación del codigo requerido
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/4a7b5743-1130-4bda-9116-24d557cef986)
+ 	- prueba de la consulta desde la URL, consultado por autores
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/a130cce3-8b4a-4dc6-b2d7-4f8f191a2cee)
 
+7. Modifique el controlador para que ahora, acepte peticiones GET al recurso /blueprints/{author}/{bpname}, el cual retorne usando una representación jSON sólo UN plano, en este caso el realizado por {author} y cuyo nombre sea {bpname}. De nuevo, si no existe dicho autor, se debe responder con el código de error HTTP 404. 
+
+	- Implementación del codigo requerido
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/d6108e04-087d-4c51-8fd2-9fd85da8ccfd)
+	- prueba de la consulta desde la URL, consultando autor y nombre del blueprint
+		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/231f40a3-d51d-4eb0-b1f9-c88355ce36cd)
 
 
 ### Parte II
@@ -118,7 +135,8 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 4. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
    	- Implementación del metodo para actualizar
    	  1. En InMemoryPersistance
-   	 	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/d70bec7c-1a1a-4e36-8432-8aefb0bfeb57)
+   	 	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/1bff4611-f3d8-45f4-9aef-004a3dfccde6)
+
 
    	  2. En BluePrintService
    	   	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/33fac651-3341-4200-bf13-a5c2c2e1843d)
