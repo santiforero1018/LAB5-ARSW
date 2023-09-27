@@ -62,7 +62,7 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
     public void saveBlueprint(Blueprint bp) throws BlueprintPersistenceException {
         if (blueprints.containsKey(new Tuple<>(bp.getAuthor(), bp.getName()))) {
             throw new BlueprintPersistenceException("The given blueprint already exists: " + bp);
-        } else if(bp.getAuthor().isEmpty() || bp.getName().isEmpty()){
+        } else if (bp.getAuthor().isEmpty() || bp.getName().isEmpty()) {
             throw new BlueprintPersistenceException("The given blueprint hasn't author or name");
         } else {
             blueprints.put(new Tuple<>(bp.getAuthor(), bp.getName()), bp);
@@ -100,11 +100,18 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
     @Override
     public void updateBluePrint(String author, String name, Blueprint nbp) throws BlueprintPersistenceException {
         try {
-            List<Point> aux2 = blueprints.get(new Tuple<>(author, name)).getPoints();
-            Point[] aux = aux2.toArray(new Point[aux2.size()]);
-            blueprints.remove(new Tuple<>(author, name));
-            this.saveBlueprint(new Blueprint(nbp.getAuthor(), nbp.getName(), aux));
+            List<Point> aux2 = nbp.getPoints();
+            if (aux2.isEmpty() || aux2 == null) {
+                blueprints.remove(new Tuple<>(author, name));
+                this.saveBlueprint(new Blueprint(nbp.getAuthor(), nbp.getName()));
+            } else{
+                Point[] aux = aux2.toArray(new Point[aux2.size()]);
+                blueprints.remove(new Tuple<>(author, name));
+                this.saveBlueprint(new Blueprint(nbp.getAuthor(), nbp.getName(), aux));
+            }
+
             
+
         } catch (BlueprintPersistenceException e) {
             throw new BlueprintPersistenceException(e.getMessage());
         }
