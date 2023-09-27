@@ -26,7 +26,7 @@ import edu.eci.arsw.blueprints.services.BlueprintsServices;
  * @author Santiago Forero Yate, Sebastian Cepeda Saray 
  */
 @RestController
-@RequestMapping(value="/blueprints")
+@RequestMapping(value="/API-V1.0Blueprints")
 public class BlueprintAPIController {
     
     @Autowired
