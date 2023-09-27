@@ -1,2 +1,11 @@
 Santiago Forero Yate, Juan Sebastian Cepeda
 
+Condiciones de carrera
+1. Al momento de actualizar un plano, es posible que varios usuarios quieran modificar el mismo plano lo que generaria una condición de carrera.
+2. Al crear un plano cabe la posibilidad de que otro usuario este creando un plano con las mismas caracteristiscas que la otra persona lo que generaria una condición de carrera.
+
+Region critica
+Se da en el metodo saveBlueprint pues es por este metodo que que se puede dar las condiciones de carrerar anteriormente mencionadas.
+
+Para dar solución a esto se usa la clase ConcurrentHashMap, la cual por medio de sus metodos proporciona seguridad para los threads que pasen por la ejecución del programa y da una garantia de atomicidad que permite manejar la concurrencia sin hacer uso de bloques sincronizados y sin afectar el rendimiento de la API.   
+
