@@ -111,6 +111,11 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 		![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/f76925ec-6868-49e6-832f-b059faad4362)
 
 4. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
+	- siguiendo lo mismo que se hizo para el metodo POST, se hace la misma ejecución para el PUT
+	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/df9e918c-2a77-4a59-a2da-4dbd6ad31b8f)
+	- Vemos que se actualiza el bluePrint que queriamos actualizar, el cual correspondia al autor john con el nombre "thepaint2"
+	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/5e6d49e8-0c8c-47da-8f98-423813cf63ac)
+	![image](https://github.com/santiforero1018/LAB5-ARSW/assets/88952698/7a4e9356-c56f-4730-b4e1-8a7235a71b95)
 
 	
 
